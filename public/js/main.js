@@ -4,9 +4,8 @@ async function makeReq(){
   const meatCount = document.querySelector("#meatCount").value
   const veggiesCount = document.querySelector("#veggiesCount").value
   
-  const res = await fetch(`/api?meatCount=${meatCount}&veggiesCount=${veggiesCount}`)
+  const res = await fetch(`/api/meatCount=${meatCount}&veggiesCount=${veggiesCount}`)
   const data = await res.json()
-  console.log(data)
 
   document.querySelector("#ingredientOne").textContent = data.veggies.map( x => x[0].toUpperCase() + x.slice(1) ).join(', ')
   document.querySelector("#ingredientTwo").textContent = data.meat.map( x => x[0].toUpperCase() + x.slice(1) ).join(', ')
@@ -17,7 +16,7 @@ async function makeReq(){
 
   const img = document.createElement('img')
   // base image
-  img.src = '../images/ingredients/pizza-base.png'
+  img.src = '/images/ingredients/pizza-base.png'
   pizzaImage.append(img)
 
   // Add meats
@@ -26,7 +25,7 @@ async function makeReq(){
     let meat = data.meat[i].replace(' ', '-')
 
     const img = document.createElement('img')
-    img.src = `../images/ingredients/${meat}.png`
+    img.src = `/images/ingredients/meat/${meat}.png`
 
     pizzaImage.append(img)
   }
@@ -36,7 +35,7 @@ async function makeReq(){
     let vegetable = data.veggies[i].replace(' ', '-')
 
     const img = document.createElement('img')
-    img.src = `../images/ingredients/${vegetable}.png`
+    img.src = `/images/ingredients/veggies/${vegetable}.png`
 
     pizzaImage.append(img)
   }
